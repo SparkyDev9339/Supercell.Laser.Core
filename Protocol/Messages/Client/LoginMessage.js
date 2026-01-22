@@ -40,6 +40,10 @@ class LoginMessage extends PiranhaMessage {
       }
       return parseInt(randomNumberString);      
     }
+    if (this.major != 29) {
+      console.log("oh no govnocde");
+      return
+    }
 
     if(this.player.state == 1){// State check (ig I will not share with crypto so u can delete)
       if(this.player.low_id == 0){// If low_id == 0 means there is no id saved in client so new account
