@@ -2,7 +2,13 @@ const ByteArray = require('./ByteArray')
 
 class ByteStream {
   constructor (data) {
-    this.buffer = data ? data : Buffer.alloc(0)
+    if (Buffer.isBuffer(data)) {
+      this.buffer = data;
+    } else if (data && typeof data === 'object' && Buffer.isBuffer(data.buffer)) {
+      this.buffer = data.buffer;
+    } else {
+      this.buffer = Buffer.alloc(0);
+    }
     this.length = 0
     this.offset = 0
     this.bitOffset = 0
